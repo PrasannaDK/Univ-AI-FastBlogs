@@ -1,13 +1,13 @@
 name: Update Notebooks And Refresh Page
 on:
   schedule:
-    - cron:  '0 */6 * * *'
+    - cron:  '*/5 * * * *'
   issues:
     types: [opened]
 
 jobs:
   update-notebooks:
-    if: (github.event_name == 'schedule' || (github.event.issue.title == '[dashboard] Refresh Notebooks'  && github.actor == 'hamelsmu' && github.event_name == 'issues')) && github.repository == 'github/covid19-dashboard'
+    if: (github.event_name == 'schedule' || (github.event.issue.title == '[dashboard] Refresh Notebooks'  && github.actor == 'PrasannaDK' && github.event_name == 'issues')) && github.repository == 'github/UnivAI-FastBlogs'
     runs-on: ubuntu-latest
     steps:
   
