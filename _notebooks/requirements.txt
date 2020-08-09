@@ -16,3 +16,4 @@ altair_saver
 jinja2
 selenium
 geopandas
+requests
