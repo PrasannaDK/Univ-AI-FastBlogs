@@ -99,3 +99,12 @@ def relu_prime(x):
 class Relu(Activation):
     def __init__(self, name):
         super().__init__(name, relu, relu_prime)
+        
+softmax = lambda x: np.exp(x)/np.sum(np.exp(x), axis=1, keepdims = True)
+
+def softmax_prime(x):
+    pass
+
+class Softmax(Activation):
+    def __init__(self, name):
+        super().__init__(name, softmax, softmax_prime)

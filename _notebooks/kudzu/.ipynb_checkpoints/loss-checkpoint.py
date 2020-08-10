@@ -12,7 +12,7 @@ class MSE(Loss):
     
     def backward(self, predicted, actual):
         N = actual.shape[0]
-        print("predshape", predicted.shape, actual.shape)
+        #print("predshape", predicted.shape, actual.shape)
         return (2./N)*(predicted - actual)
 
 class BCE(Loss):
@@ -26,5 +26,20 @@ class BCE(Loss):
     
     def backward(self, predicted, actual):
         N = actual.shape[0]
-        print("predshape", predicted.shape, actual.shape)
+        #print("predshape", predicted.shape, actual.shape)
         return (1./N)*((predicted - actual)/(predicted*(1. - predicted)))
+    
+class CCE(Loss):    #Categorical Cross Entropy
+    def __call__(self, predicted, actual):
+        m = actual.shape[0]
+        p = predicted
+        log_likelihood = -np.log(p[range(m),y])
+        loss = np.sum(log_likelihood) / m
+        return loss
+    
+    def backward(self, predicted, actual):
+        m = actual.shape[0]
+        grad = predicted
+        grad[range(m),y] -= 1
+        grad = grad/m
+        return grad
